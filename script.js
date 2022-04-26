@@ -8,8 +8,7 @@ function clear() {
 
 let result_delete_function;
 function delete_rest_symbols(expression) {
-    expression = expression.slice(0, -1);
-    result_delete_function = expression;
+    result_delete_function = expression.slice(0, -1);
 
     if (isNaN(expression.slice(-1))) {
         delete_rest_symbols(expression);
@@ -26,7 +25,6 @@ for (let i = 0; i< td.length; i++) {
         if (!isNaN(e.target.textContent) || e.target.textContent == ".") {
             value += e.target.textContent;
             calc_display.value = value;
-
         }
         else if (e.target.textContent == "=") {
             if (value == "" || value == undefined ) calc_display.value = 0;
@@ -56,7 +54,7 @@ for (let i = 0; i< td.length; i++) {
             calc_display.value = value;
         }
         else if (e.target.textContent == "−") {
-            // выражение может начинаться с минуса
+            // учтено, что выражение может начинаться с минуса
             if (isNaN(value.slice(-1))) value = eval(delete_rest_symbols(value)) + "-";
             else value = calc_display.value + "-";
             calc_display.value = value;
